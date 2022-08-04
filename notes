@@ -1,0 +1,33 @@
+DTO: Data Transfer Objects
+Decorator takes target, name and property descriptor as arguments.
+
+@Prop: used in every property
+Schema Factory: used to convert class to schema 
+// @Get()
+  // findAll() {
+  //   return this.events;
+  // }
+
+  // @Get(':id')
+  // findOne(@Param('id') id) {
+  //   const event = this.events.find((event) => event.id === parseInt(id));
+  //   return event;
+  // }
+
+
+  // @Patch(':id')
+  // update(@Param('id') id, @Body() input: UpdateEventDto) {
+  //   const index = this.events.findIndex((event) => event.id === parseInt(id));
+  //   this.events[index] = {
+  //     ...this.events[index],
+  //     ...input,
+  //     when: input.when ? new Date(input.when) : this.events[index].when,
+  //   };
+  //   return this.events[index];
+  // }
+
+  // @Delete(':id')
+  // @HttpCode(204)
+  // remove(@Param('id') id) {
+  //   this.events = this.events.filter((event) => event.id !== parseInt(id));
+  // }
