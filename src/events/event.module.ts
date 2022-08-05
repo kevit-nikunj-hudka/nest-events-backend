@@ -10,5 +10,6 @@ import { Event, EventSchema } from './schema/event.schema';
   imports: [
     MongooseModule.forFeature([{ name: Event.name, schema: EventSchema }]),
   ],
+  exports: [EventService],
 })
-export class EventModule {}
+export default class EventModule {}

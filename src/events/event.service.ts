@@ -15,4 +15,29 @@ export class EventService {
       ...createEventDto,
     }).save();
   }
+
+  async getEvents(): Promise<Event[]> {
+    return await this.model.aggregate([
+      {
+        $lookup: {
+          from: 'attendees',
+          localField: '_id',
+          foreignField: 'event',
+          as: 'attendees',
+        },
+      },
+    ]);
+  }
+
+  async getEvent(id): Promise<Event> {
+    return await this.model.findById(id).exec();
+  }
+
+  async updateEvent(id, input): Promise<Event> {
+    return await this.model.findByIdAndUpdate(id, input, { new: true }).exec();
+  }
+
+  async deleteEvent(id): Promise<Event> {
+    return await this.model.findByIdAndDelete(id).exec();
+  }
 }
