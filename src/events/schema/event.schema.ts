@@ -19,3 +19,9 @@ export class Event {
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);
+
+EventSchema.virtual('Attendee', {
+  ref: 'Attendee',
+  localField: '_id',
+  foreignField: 'event',
+});
