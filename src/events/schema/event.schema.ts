@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Type } from 'class-transformer';
+import mongoose, { Document } from 'mongoose';
+import { User } from 'src/auth/schema/user.schema';
 
 export type EventDocument = Event & Document;
 
@@ -16,6 +18,10 @@ export class Event {
 
   @Prop()
   address: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name })
+  @Type(() => User)
+  organiser: User;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

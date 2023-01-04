@@ -4,14 +4,17 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import AttendeeModule from './attendees/attendee.module';
+import { AuthModule } from './auth/auth.module';
 import EventModule from './events/event.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGODB_URL),
+    AuthModule,
     EventModule,
     AttendeeModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

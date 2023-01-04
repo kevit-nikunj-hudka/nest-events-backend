@@ -31,3 +31,20 @@ Schema Factory: used to convert class to schema
   // remove(@Param('id') id) {
   //   this.events = this.events.filter((event) => event.id !== parseInt(id));
   // }
+
+  Validations Pipe can be set globally in main.ts or in the controller.ts 
+  using group in Validations
+  
+  Another way to use Pipe is using decorator @UsePipes on methods or at class level
+
+ads via Carbon
+Vultr has landed in India! Deploy servers at a fraction of the cost of Big Tech. Claim your $100 credit today.
+ADS VIA CARBON
+Guards
+A guard is a class annotated with the @Injectable() decorator, which implements the CanActivate interface.
+
+
+Guards have a single responsibility. They determine whether a given request will be handled by the route handler
+or not, depending on certain conditions (like permissions, roles, ACLs, etc.) present at run-time.
+
+Guard alternative of middleware

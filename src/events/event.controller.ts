@@ -10,9 +10,13 @@ import {
   Patch,
   Delete,
   Logger,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateEventDto } from './dto/event.dto';
 import { UpdateEventDto } from './dto/event.update.dto';
+import { CurrentUser } from 'src/auth/current-user.deorator';
+import { User } from 'src/auth/schema/user.schema';
+import { AuthGuardJwt } from 'src/auth/auth-guard.jwt';
 
 @Controller('events')
 export class EventsController {
@@ -22,10 +26,17 @@ export class EventsController {
 
   // create a new Event
   @Post()
-  async create(@Res() response, @Body() input: CreateEventDto) {
-    const newEvent = await this.eventService.create(input);
+  @UseGuards(AuthGuardJwt)
+  async create(
+    @Res() response,
+    @Body() input: CreateEventDto,
+    @CurrentUser() user: User,
+  ) {
+    const newEvent = await this.eventService.createEvent(input, user);
+
     return response.status(HttpStatus.CREATED).json({
       newEvent,
+      organiser: user,
     });
   }
 
